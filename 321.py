@@ -1,5 +1,4 @@
 import streamlit as st
-from http import HTTPStatus
 from dashscope import Application
 
 # 直接在代码中硬编码API密钥（不推荐，仅供测试使用）
@@ -26,13 +25,8 @@ def fetch_data_from_bailian(query, session_id=None):
         session_id=session_id  # 添加session_id参数
     )
 
-    if response.status_code == HTTPStatus.OK:
-        # 更新session_id以供下一次调用使用
-        session_state['session_id'] = response.output.session_id
-        return response
-    else:
-        st.error(f'请求失败，状态码：{response.status_code}')
-        return None
+    session_state['session_id'] = response.output.session_id
+    return response
 
 
 if prompt := st.chat_input():
