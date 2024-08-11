@@ -2,3 +2,5 @@ pip
 streamlit
 Application
 mysqlclient
+
+1
